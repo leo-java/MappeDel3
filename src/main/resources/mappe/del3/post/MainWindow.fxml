@@ -22,14 +22,14 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Save as .CSV" />
-                        <MenuItem mnemonicParsing="false" text="Import from .CSV" />
-                        <MenuItem mnemonicParsing="false" text="Exit" />
+                    <MenuItem fx:id="saveAsCSVButton" mnemonicParsing="false" text="Save as .CSV" />
+                        <MenuItem fx:id="importFromCSVButton" mnemonicParsing="false" text="Import from .CSV" />
+                        <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="aboutButton" mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -37,7 +37,7 @@
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
                   <TextField prefHeight="30.0" prefWidth="945.0" promptText="Search for post number or area" />
-                <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0">
+                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                            <image>
@@ -52,13 +52,13 @@
       </VBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="postalTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="200.0" text="Post Number" />
-          <TableColumn prefWidth="200.0" text="Post Area" />
-            <TableColumn prefWidth="200.0" text="Municipality Number" />
-            <TableColumn prefWidth="200.0" text="Municipality Name" />
-            <TableColumn prefWidth="200.0" text="Category" />
+          <TableColumn fx:id="postalCodeColumn" prefWidth="200.0" text="Postal Code" />
+          <TableColumn fx:id="postalAreaColumn" prefWidth="200.0" text="Post Area" />
+            <TableColumn fx:id="municipalityNumberColumn" prefWidth="200.0" text="Municipality Number" />
+            <TableColumn fx:id="municipalityNameColumn" prefWidth="200.0" text="Municipality Name" />
+            <TableColumn fx:id="categoryColumn" prefWidth="200.0" text="Category" />
         </columns>
       </TableView>
    </center>
