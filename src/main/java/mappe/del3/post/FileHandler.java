@@ -30,9 +30,9 @@ public class FileHandler {
 
     public void writeTxt(ArrayList<Post> postList, String filePath) throws IOException{
         try (FileWriter fileWriter = new FileWriter(String.valueOf(filePath))){
-            fileWriter.write("postCode;postArea;municipalityNumber;municipalityName;category");
+            fileWriter.write("postCode\tpostArea\tmunicipalityNumber\tmunicipalityName\tcategory");
             for (Post post:postList) {
-                String row = post.getPostCode() + "\\\\t" + post.getPostArea() + "\\\\t" + post.getMunicipalityNumber()  + "\\\\t" + post.getMunicipalityName()  + "\\\\t" + post.getCategory() + "\\\\t" + "\n";
+                String row = post.getPostCode() + "\t" + post.getPostArea() + "\t" + post.getMunicipalityNumber()  + "\t" + post.getMunicipalityName()  + "\t" + post.getCategory() + "\t" + "\n";
                 fileWriter.append(row);
             }
         }catch (IOException e){

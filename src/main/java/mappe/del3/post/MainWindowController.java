@@ -1,5 +1,6 @@
 package mappe.del3.post;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,7 +64,18 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void saveAsCSV(ActionEvent actionEvent) {
+    public void writeToTxt(ActionEvent actionEvent) {
+        FileHandler fileHandler = new FileHandler();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", "*.txt"));
+        File file = fileChooser.showSaveDialog(new Stage());
+        if(file != null){
+            try{
+                fileHandler.writeTxt(postRegister.getPost(), file.getAbsolutePath());
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
@@ -90,6 +102,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void exit(ActionEvent actionEvent) {
+        Platform.exit();
     }
 
     @FXML
