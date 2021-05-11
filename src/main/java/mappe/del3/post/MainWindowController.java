@@ -3,6 +3,8 @@ package mappe.del3.post;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +15,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mappe.del3.post.model.Post;
 import mappe.del3.post.model.PostRegister;
-
+//import org.apache.commons.lang3.math.NumberUtils;
+//Doesn't import so I'll make my own method, but I would use this for the isParsable() method.
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -91,7 +95,7 @@ public class MainWindowController implements Initializable {
             postRegister.setPost(fileHandler.readTxt(file));
             updateTableView();
         }catch (IOException e){
-            System.out.println("ERROR: An IOException has occured: " + e.getCause());
+            System.out.println("ERROR: An IOException has occurred: " + e.getCause());
             throw e;
         }
     }
@@ -101,11 +105,49 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
+    public void openAbout(ActionEvent actionEvent){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Application information");
+        alert.setHeaderText("This application was made by Leo");
+        alert.setContentText("V 1.0 11 May 2021");
+        alert.show();
+    }
+    @FXML
     public void exit(ActionEvent actionEvent) {
         Platform.exit();
     }
 
     @FXML
     public void search(ActionEvent actionEvent) {
+        FilteredList<Post> filteredData = new FilteredList<>(observablePostList, p -> true);
+        filteredData.setPredicate(post -> {
+            if (searchField.getText() == null || searchField.getText().isEmpty() || searchField.getText().isBlank()) {
+                return true;
+            }
+            if(isNumeric(searchField.getText())){
+                if (post.getPostCode().contains(searchField.getText())){
+                    return true;
+                }
+            } else if (post.getPostArea().contains(searchField.getText().toUpperCase(Locale.ROOT))){
+                return true;
+            }
+            return false;
+        });
+        SortedList<Post> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(postalTableView.comparatorProperty());
+        postalTableView.setItems(sortedData);
+    }
+
+    public static boolean isNumeric(String string) {
+        int intValue;
+        if(string == null || string.equals("")) {
+            return false;
+        }
+        try {
+            intValue = Integer.parseInt(string);
+            return true;
+        } catch (NumberFormatException e) {
+        }
+        return false;
     }
 }

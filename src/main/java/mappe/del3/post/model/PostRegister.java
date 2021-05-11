@@ -7,7 +7,6 @@ public class PostRegister {
 
     public PostRegister() {
         this.postNumberRegister = new ArrayList<>();
-        this.fillRegister();
     }
 
     private void fillRegister(){
