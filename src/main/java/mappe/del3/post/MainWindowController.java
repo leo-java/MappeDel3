@@ -20,6 +20,7 @@ import mappe.del3.post.model.PostRegister;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -74,8 +75,23 @@ public class MainWindowController implements Initializable {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", "*.txt"));
         File file = fileChooser.showSaveDialog(new Stage());
         if(file != null){
+            FilteredList<Post> filteredData = new FilteredList<>(observablePostList, p -> true);
+            filteredData.setPredicate(post -> {
+                if (searchField.getText() == null || searchField.getText().isEmpty() || searchField.getText().isBlank()) {
+                    return true;
+                }
+                if(isNumeric(searchField.getText())){
+                    if (post.getPostCode().contains(searchField.getText())){
+                        return true;
+                    }
+                } else if (post.getPostArea().contains(searchField.getText().toUpperCase(Locale.ROOT))){
+                    return true;
+                }
+                return false;
+            });
+            ArrayList<Post> sortedData = new ArrayList<>(filteredData);
             try{
-                fileHandler.writeTxt(postRegister.getPost(), file.getAbsolutePath());
+                fileHandler.writeTxt(sortedData, file.getAbsolutePath());
             }catch (IOException e){
                 e.printStackTrace();
             }

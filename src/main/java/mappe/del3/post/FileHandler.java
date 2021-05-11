@@ -2,6 +2,8 @@ package mappe.del3.post;
 import mappe.del3.post.model.Post;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
+
 public class FileHandler {
     public FileHandler(){
     }
@@ -30,9 +32,9 @@ public class FileHandler {
 
     public void writeTxt(ArrayList<Post> postList, String filePath) throws IOException{
         try (FileWriter fileWriter = new FileWriter(String.valueOf(filePath))){
-            fileWriter.write("postCode\tpostArea\tmunicipalityNumber\tmunicipalityName\tcategory");
+            fileWriter.write("POSTCODE\tPOSTAREA\tMUNICIPALITYNUMBER\tMUNICIPALITYNAME\tCATEGORY\t");
             for (Post post:postList) {
-                String row = post.getPostCode() + "\t" + post.getPostArea() + "\t" + post.getMunicipalityNumber()  + "\t" + post.getMunicipalityName()  + "\t" + post.getCategory() + "\t" + "\n";
+                String row = post.getPostCode().toUpperCase(Locale.ROOT) + "\t" + post.getPostArea().toUpperCase(Locale.ROOT) + "\t" + post.getMunicipalityNumber().toUpperCase(Locale.ROOT)  + "\t" + post.getMunicipalityName().toUpperCase(Locale.ROOT)  + "\t" + post.getCategory().toUpperCase(Locale.ROOT) + "\t" + "\n";
                 fileWriter.append(row);
             }
         }catch (IOException e){
