@@ -20,4 +20,8 @@ public class PostRegister {
     public ArrayList<Post> getPost() {
         return this.postNumberRegister;
     }
+
+    public void setPost(ArrayList<Post> postNumberRegister) {
+        this.postNumberRegister = postNumberRegister;
+    }
 }

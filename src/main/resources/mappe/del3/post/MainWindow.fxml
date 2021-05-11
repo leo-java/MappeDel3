@@ -22,9 +22,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="saveAsCSVButton" mnemonicParsing="false" text="Save as .CSV" />
-                        <MenuItem fx:id="importFromCSVButton" mnemonicParsing="false" text="Import from .CSV" />
-                        <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Exit" />
+                    <MenuItem fx:id="saveAsCSVButton" mnemonicParsing="false" text="Save as .txt" onAction="#saveAsCSV"/>
+                        <MenuItem fx:id="importFromCSVButton" mnemonicParsing="false" text="Import from .txt" onAction="#importFromTxt"/>
+                        <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Exit" onAction="#exit"/>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -36,8 +36,8 @@
             </MenuBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                  <TextField prefHeight="30.0" prefWidth="945.0" promptText="Search for post number or area" />
-                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0">
+                  <TextField fx:id="searchField" prefHeight="30.0" prefWidth="945.0" promptText="Search for post number or area" />
+                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" onAction="#search">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                            <image>
