@@ -15,8 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mappe.del3.post.model.Post;
 import mappe.del3.post.model.PostRegister;
-//import org.apache.commons.lang3.math.NumberUtils;
-//Doesn't import so I'll make my own method, but I would use this for the isParsable() method.
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
