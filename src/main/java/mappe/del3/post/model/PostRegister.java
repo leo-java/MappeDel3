@@ -9,13 +9,6 @@ public class PostRegister {
         this.postNumberRegister = new ArrayList<>();
     }
 
-    private void fillRegister(){
-        this.postNumberRegister.add(new Post("postCode","postArea","municipalityCode","municipalityName","category"));
-        this.postNumberRegister.add(new Post("1","a","1","A","a"));
-        this.postNumberRegister.add(new Post("2","b","2","B","b"));
-        this.postNumberRegister.add(new Post("a","b","c","d","e"));
-    }
-
     public ArrayList<Post> getPost() {
         return this.postNumberRegister;
     }
