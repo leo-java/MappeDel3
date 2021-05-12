@@ -8,6 +8,9 @@ public class Post {
     private String category;
 
     public Post(String postCode, String postArea, String municipalityNumber, String municipalityName, String category) {
+        if(postCode.isBlank() || postArea.isBlank() || municipalityName.isBlank()){
+            throw new IllegalArgumentException("Postal code, postal area and municipality name cannot be blank.");
+        }
         this.postCode = postCode;
         this.postArea = postArea;
         this.municipalityNumber = municipalityNumber;
