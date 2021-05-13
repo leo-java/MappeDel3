@@ -9,10 +9,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+/**
+ * The type Post app.
+ */
 public class PostApp extends Application {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

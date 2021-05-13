@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * The type Main window controller.
+ */
 public class MainWindowController implements Initializable {
     
     @FXML
@@ -66,6 +69,11 @@ public class MainWindowController implements Initializable {
         this.postalTableView.setItems(this.observablePostList);
     }
 
+    /**
+     * Write to txt.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void writeToTxt(ActionEvent actionEvent) {
         FileHandler fileHandler = new FileHandler();
@@ -118,6 +126,11 @@ public class MainWindowController implements Initializable {
         this.observablePostList.setAll(this.postRegister.getPost());
     }
 
+    /**
+     * Open about.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void openAbout(ActionEvent actionEvent){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -126,11 +139,22 @@ public class MainWindowController implements Initializable {
         alert.setContentText("V 1.0 11 May 2021");
         alert.show();
     }
+
+    /**
+     * Exit.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void exit(ActionEvent actionEvent) {
         Platform.exit();
     }
 
+    /**
+     * Search.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void search(ActionEvent actionEvent) {
         FilteredList<Post> filteredData = new FilteredList<>(observablePostList, p -> true);
@@ -152,6 +176,12 @@ public class MainWindowController implements Initializable {
         postalTableView.setItems(sortedData);
     }
 
+    /**
+     * Is numeric boolean.
+     *
+     * @param string the string
+     * @return the boolean
+     */
     public static boolean isNumeric(String string) {
         int intValue;
         if(string == null || string.equals("")) {

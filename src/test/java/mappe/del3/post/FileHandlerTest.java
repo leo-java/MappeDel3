@@ -73,4 +73,14 @@ public class FileHandlerTest {
         ArrayList<Post> fromFile = fileHandler.readTxt(file);
         assertEquals(postRegister.getPost(),fromFile);
     }
+
+    /**
+     * Throws when file does not open.
+     */
+    @Test
+    @DisplayName("Throws when file cannot be opened")
+    public void throwsWhenFileDoesNotOpen(){
+        File nonExistentFile = new File("thispathdoesnotexist.txt");
+        assertThrows(IOException.class, () -> fileHandler.readTxt(nonExistentFile));
+    }
 }

@@ -5,10 +5,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * The type File handler.
+ */
 public class FileHandler {
+    /**
+     * Instantiates a new File handler.
+     */
     public FileHandler(){
     }
 
+    /**
+     * Read txt array list.
+     *
+     * @param file the file
+     * @return the array list
+     * @throws IOException the io exception
+     */
     public ArrayList<Post> readTxt(File file) throws IOException{
         ArrayList<Post> newPostList = new ArrayList<>();
         //Here fileReader will use the charset UTF-8, it is impossible to know how the plain text file is encoded
@@ -36,6 +49,13 @@ public class FileHandler {
         return newPostList;
     }
 
+    /**
+     * Write txt.
+     *
+     * @param postList the post list
+     * @param filePath the file path
+     * @throws IOException the io exception
+     */
     public void writeTxt(ArrayList<Post> postList, String filePath) throws IOException{
         try (FileWriter fileWriter = new FileWriter(String.valueOf(filePath))){
             for (Post post:postList) {
