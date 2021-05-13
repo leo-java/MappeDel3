@@ -55,6 +55,12 @@ public class MainWindowController implements Initializable {
     private PostRegister postRegister;
     private ObservableList<Post> observablePostList;
 
+    /**
+     * Called to initialize a controller after its root element has been completely processed.
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     *                       Also creates an observable list and sets items in the list
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.postRegister = new PostRegister();
@@ -71,7 +77,9 @@ public class MainWindowController implements Initializable {
 
     /**
      * Write to txt.
-     *
+     * Opens a file explorer window and the user creates and saves a file which is written to
+     * Checks that the file is not null
+     * Will write the filtered results
      * @param actionEvent the action event
      */
     @FXML
@@ -104,6 +112,13 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Imports from txt.
+     * Opens a file explorer window for the user to choose a text file
+     * Tries to read from the file and set table values accordingly
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     private void importFromTxt(ActionEvent actionEvent) throws IOException{
         Stage stage = new Stage();
@@ -122,13 +137,16 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Refreshes the values visible in the table
+     */
     private void updateTableView() {
         this.observablePostList.setAll(this.postRegister.getPost());
     }
 
     /**
      * Open about.
-     *
+     * Opens an alert box showing information about the program
      * @param actionEvent the action event
      */
     @FXML
@@ -142,7 +160,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Exit.
-     *
+     * Exits the application
      * @param actionEvent the action event
      */
     @FXML
@@ -152,7 +170,8 @@ public class MainWindowController implements Initializable {
 
     /**
      * Search.
-     *
+     * Searches through all results and refreshes the visible list with
+     * All results containing a non case sensitive version of the String in the search text field
      * @param actionEvent the action event
      */
     @FXML
@@ -178,7 +197,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Is numeric boolean.
-     *
+     * Checks if a given string is numeric
      * @param string the string
      * @return the boolean
      */
