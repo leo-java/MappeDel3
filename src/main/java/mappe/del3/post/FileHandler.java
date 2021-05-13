@@ -1,6 +1,8 @@
 package mappe.del3.post;
 import mappe.del3.post.model.Post;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -10,7 +12,7 @@ public class FileHandler {
 
     public ArrayList<Post> readTxt(File file) throws IOException{
         ArrayList<Post> newPostList = new ArrayList<>();
-        try(FileReader fileReader = new FileReader(file)){
+        try(FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8)){
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String row = bufferedReader.readLine();
 
