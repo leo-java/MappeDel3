@@ -1,7 +1,6 @@
 package mappe.del3.post;
 import mappe.del3.post.model.Post;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -12,7 +11,12 @@ public class FileHandler {
 
     public ArrayList<Post> readTxt(File file) throws IOException{
         ArrayList<Post> newPostList = new ArrayList<>();
-        try(FileReader fileReader = new FileReader(file, StandardCharsets.ISO_8859_1)){
+        //Here fileReader will use the charset UTF-8, it is impossible to know how the plain text file is encoded
+        //There is no solution to this problem as there will always be a possibility for issues, the best solution could be
+        //To check for UTF-8 BOM at the beginning of the text file and if this isn't found revert to ISO 8859-1 encoding
+        //This is somewhat outside of the scope of this project so if there are issues displaying special characters the simplest solution
+        //Would be to open the saved file, click save as, keep the same name, and change the encoding type to UTF-8.
+        try(FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8)){
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String row = bufferedReader.readLine();
 
