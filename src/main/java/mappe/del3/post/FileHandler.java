@@ -12,7 +12,7 @@ public class FileHandler {
 
     public ArrayList<Post> readTxt(File file) throws IOException{
         ArrayList<Post> newPostList = new ArrayList<>();
-        try(FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8)){
+        try(FileReader fileReader = new FileReader(file, StandardCharsets.ISO_8859_1)){
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String row = bufferedReader.readLine();
 
